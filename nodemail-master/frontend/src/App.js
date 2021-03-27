@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import './App.css';
-import axios from 'axios';
+import api from './services/api'
 
 function App() {
   const [campos, setCampos] = useState({
@@ -20,19 +20,16 @@ function App() {
   function send(){
     const formData = new FormData();
     Object.keys(campos).forEach(key => formData.append(key, campos[key]));
-    axios.post('http://localhost:3030/send', 
+    api.post('send',
               formData,
               {
                 headers: {
                  "Content-Type": `multipart/form-data; boundary=${formData._boundary}`,
                 }
               })
-      .then(response => { console.log(response.data); })
   }
 
-  function handleFormSubmit(event){ 
-    event.preventDefault(); 
-    console.log(campos); 
+  function handleFormSubmit(){
     send(campos);
   }
 

@@ -2,17 +2,17 @@ const mailer = require("nodemailer");
 
 module.exports = (email, nome, mensagem, anexo) => {
     const smtpTransport = mailer.createTransport({
-        host: 'smtp.umbler.com',
-        port: 587,
-        secure: false, //SSL/TLS
+        host: 'smtp.gmail.com',
+        port: 465,  //SSL/TLS
+        secure: true,
         auth: {
-            user: 'yam.claro2019@gmail.com@clarodesenvolvimentos.com.br',
-            pass: 'xxxxxx'
+            user: '@gmail.com',
+            pass: 'senha'
         }
     })
     
     const mail = {
-        from: "Yam <yam.claro2019@gmail.com",
+        from: "Nome <@gmail.com",
         to: email,
         subject: `${nome} te enviou uma mensagem`,
         text: mensagem,
